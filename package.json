@@ -1,0 +1,41 @@
+{
+  "name": "rss-reader",
+  "version": "1.0.0",
+  "description": "A local-first RSS reader",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n css,srv -c magenta,cyan \"npm:dev:css\" \"npm:dev:server\"",
+    "dev:css": "tailwindcss -i ./styles/input.css -o ./public/styles.css --watch",
+    "dev:server": "tsx watch src/index.tsx",
+    "build:css": "tailwindcss -i ./styles/input.css -o ./public/styles.css --minify",
+    "start": "npm run build:css && tsx src/index.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajerni/rss-reader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajerni/rss-reader/issues"
+  },
+  "homepage": "https://github.com/ajerni/rss-reader#readme",
+  "dependencies": {
+    "@hono/node-server": "^2.1.0",
+    "better-sqlite3": "^13.0.3",
+    "fast-xml-parser": "^5.10.1",
+    "hono": "^4.13.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.2.0",
+    "concurrently": "^10.0.4",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
