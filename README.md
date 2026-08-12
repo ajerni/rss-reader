@@ -58,3 +58,16 @@ Feed content is untrusted HTML, so it runs through an allowlist sanitizer
 scripts and embeds are removed entirely, and `javascript:` URLs are stripped. All SQL uses bound
 parameters, and search input is tokenized before it reaches FTS5 so punctuation can't break the
 query parser.
+
+
+## Deploy (homelab)
+
+Container image for the LAN Kubernetes cluster (Forgejo registry + Flux).
+
+```bash
+# after docker login to git.home.lan (see docs/rss-reader.md in ajerni/kubernetes)
+docker build -t git.home.lan/<forgejo-user>/rss-reader:0.1.0 .
+docker push git.home.lan/<forgejo-user>/rss-reader:0.1.0
+```
+
+Runtime env: `PORT` (default `3000`), `DB_PATH` (default `data/reader.db`; in-cluster `/data/reader.db` on a PVC).
